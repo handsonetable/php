@@ -1,1 +1,9 @@
  mysqli_real_escape_string($_POST['name']);    \n, \r, \, ', ",
+
+
+
+Encode/decode:
+1.base64_encode/decode:
+     base64_decode(urldecode($_REQUEST['engagement_id']));
+ 2.urlencode/decode:
+     urlencode($_POST['name']);

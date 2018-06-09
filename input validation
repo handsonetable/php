@@ -1,3 +1,4 @@
+ //prevent sql injection
  mysqli_real_escape_string($_POST['name']);    \n, \r, \, ', ",
 
 
@@ -16,6 +17,6 @@ Encode/decode:
      
      
      
-Get First char:
+//Get First char:
    $email=$_POST['email'];
    $firstCharacter = $email[0];

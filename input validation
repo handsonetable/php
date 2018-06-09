@@ -7,6 +7,15 @@ Encode/decode:
      base64_decode(urldecode($_REQUEST['engagement_id']));
  2.urlencode/decode:
      urlencode($_POST['name']);
-3. First char:
+     
+     
+     
+     
+     
+     
+     
+     
+     
+Get First char:
    $email=$_POST['email'];
    $firstCharacter = $email[0];

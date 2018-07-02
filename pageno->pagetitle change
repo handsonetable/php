@@ -1,0 +1,30 @@
+//common head.php
+$pagename=flycon::pagetitle($pagetitle);//flycon--class,pagetitle--method,$pageno---parameter,$pagename--return variable
+
+<title><?php echo $pagename['title']; ?> | Flykontinents</title>
+  
+//page1.php
+$pagetitle="8";
+$ip=$_SERVER['REMOTE_ADDR'];
+$date = date('Y-m-d H:i:s');
+
+ <?php 
+
+ class flycon{
+	 
+	 public function pagetitle($page){ //$page--parameter
+		$value=array();
+      switch($page){
+        case "1":
+          $value['title']="Home";
+          break;
+        case "2":
+          $value['title']="About us";
+          break;
+        }
+		return $value;
+	 }
+	 
+ }
+ 
+ ?>

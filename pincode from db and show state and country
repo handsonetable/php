@@ -1,21 +1,43 @@
-<?php 
-ob_start();
-session_start();
-error_reporting(0);
-include('db/mysql_connect.php');
-$pincode=$_POST['pincode'];
-	
-	$sql = "SELECT * FROM pincode_database where pincode='$pincode' ";
-	$result = mysqli_query($con, $sql);
-	if($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
-	{
-	$state=$row['state_name'];
-	$city=$row['district_name'];
-	}
-	echo $city.'|'.$state;
+function check_pincode(pin)
+{
+	var datastring="pincode="+pin;	
+	$.ajax({
+		
+		type:"POST",
+		url:"ajax_check_pincode.php",
+		cache:false,
+		data:datastring,
+		success: function(data){			
+			var rdata=data;			
+			var temp = new Array();
+			temp = rdata.split("|");
+			document.getElementById('city').value = temp[0];
+			document.getElementById('state').value = temp[1];
+			document.getElementById('country').value = 'India';
+			document.getElementById('phone').focus();
 
-	
+		}		
+		
+	});
+}
 
-	
 
-?>
+
+//ajax_check_pincode.php
+
+	<?php 
+	ob_start();
+	session_start();
+	error_reporting(0);
+	include('db/mysql_connect.php');
+	$pincode=$_POST['pincode'];
+
+		$sql = "SELECT * FROM pincode_database where pincode='$pincode' ";
+		$result = mysqli_query($con, $sql);
+		if($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
+		{
+		$state=$row['state_name'];
+		$city=$row['district_name'];
+		}
+		echo $city.'|'.$state;
+	?>

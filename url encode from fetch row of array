@@ -1,0 +1,33 @@
+ //fetch particular email and password row
+ 
+     if(count($email_fetch_row)>=1){
+            $base=base64_encode($email);
+            $len=strlen($base);
+            $md=md5($len);
+            $char = 'ABCDEFGHIJKLMOPQRSTUVXWYZ0123456789abcdefghijklmnopqrstuvxyz';
+            //Shuffle base with md5
+            $e1="";
+            for($i=0;$i<$len;$i++){
+                $e1.=($md[$i] ?: $char[rand(1,57)]).$base[$i];
+            }
+            $date=base64_encode(date("Y-m-d H:i:s"));
+            $encode=$e1."ofci".base64_encode($len)."ofci".base64_encode($date);
+            $resetLink="https://ledgers.indiafilings.com/l/create-password.php?email=".base64_encode($encode)."";
+            $contents = "<html>
+                                <head><title>Reset Password for LEDGERS by IndiaFilings</title></head>
+                                <body>
+                                <p>Dear ".$email_row['name'].",</p>
+                                <p>You can reset the password for your LEDGERS Account with IndiaFilings using the link below:</p>
+                                <a href='$resetLink'>Reset Password</a>
+                                <p>If you have any questions or concerns with the document, please call us at: (044) 4024 7777 (100 Lines)</p>
+                                <p> Best regards,<br><strong>IndiaFilings Team</strong><br>
+                                    <img src='https://www.indiafilings.com/images/logo-new.png' width='121'>
+                                </p>
+                                </body>
+                                </html>";
+            mail_send($email,"Reset Password for LEDGERS",$contents);
+            echo "true";
+
+        }else{
+            echo "false";
+        }

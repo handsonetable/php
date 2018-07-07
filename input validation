@@ -1,17 +1,17 @@
  //prevent sql injection
- mysqli_real_escape_string($_POST['name']);    \n, \r, \, ', ",
-
+      mysqli_real_escape_string($_POST['name']);    \n, \r, \, ', ",
+               or
+      $email = $con->real_escape_string($email);
+     $password = $con->real_escape_string($password);
 
 
 Encode/decode:
-1.base64_encode/decode:
+ 1.base64_encode/decode:
      base64_decode(urldecode($_REQUEST['engagement_id']));
  2.urlencode/decode:
      urlencode($_POST['name']);
-     
-     
-     
-     
+ 3.password hashing:
+     $password_hash = hash("sha256", $_POST['password']);  
      
      
      
